@@ -31,16 +31,10 @@ def create_database():
             # Create database if it doesn't exist
             cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
             
-            # Check if database was created or already exists
-            cursor.execute("SHOW DATABASES LIKE 'alx_book_store'")
-            result = cursor.fetchone()
-            
-            if result:
-                print("Database 'alx_book_store' created successfully!")
-            else:
-                print("Failed to create database 'alx_book_store'")
+            # Database creation successful if no exception was raised
+            print("Database 'alx_book_store' created successfully!")
                 
-    except Error as e:
+    except mysql.connector.Error as e:
         print(f"Error connecting to MySQL: {e}")
         print("Please check your MySQL server connection and credentials.")
         sys.exit(1)
